@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer'; // 👈 CORREGIDO: Faltaba importar esto
-import { QuoteDocument } from './QuotePDF';
-import { Card } from '../../../components/ui/Card';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
-import { PageContainer } from '../../../components/layout/PageContainer';
-import type { Client } from '../../../types/user';
-import type { Quote, QuoteSection, QuoteItem } from '../../../types/quote';
+import { QuoteDocument } from '../../pdf/QuotePDF';
+import { Card } from '../../components/ui/Card';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+import { PageContainer } from '../../components/layout/PageContainer';
+import type { Client } from '../../types/user';
+import type { Quote, QuoteSection, QuoteItem } from '../../types/quote';
 
 interface Props {
   onBack: () => void;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 // Importamos tus componentes UI existentes según tu estructura
-import { Card } from '../../../components/ui/Card';
-import { Input } from '../../../components/ui/Input';
-import { Button } from '../../../components/ui/Button';
-import { PageContainer } from '../../../components/layout/PageContainer'; 
+import { Card } from '../../components/ui/Card';
+import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
+import { PageContainer } from '../../components/layout/PageContainer'; 
 
 // Importamos el tipo de dato
-import type { Client } from '../../../types/user';
+import type { Client } from '../../types/user';
 
 export const HomeDashboard = () => {
   // --- ESTADOS (LÓGICA) ---

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // Páginas
-import { HomeDashboard } from './modules/dashboard/pages/HomeDashboard';
-import { QuoteHistory } from './modules/quotes/pages/QuoteHistory';
-import { CreateQuote } from './modules/quotes/pages/CreateQuote';
+import { HomeDashboard } from './pages/Home/HomeDashboard';
+import { QuoteHistory } from './pages/QuoteHistory/QuoteHistory';
+import { CreateQuote } from './pages/CreateQuote/CreateQuote';
 import { Button } from './components/ui/Button';
 
 // Tipos

@@ -1,10 +1,9 @@
 // pages/QuotePDF.tsx
-import React from 'react';
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 // 👇 ASEGÚRATE QUE ESTAS RUTAS SEAN CORRECTAS SEGÚN TU CARPETA
-import type { Client } from '../../../types/user';     // Quizás sea ../../types/user
-import type { QuoteSection } from '../../../types/quote'; 
+import type { Client } from '../types/user';     // Quizás sea ../../types/user
+import type { QuoteSection } from '../types/quote'; 
 
 // ... (resto del código del PDF que te pasé antes) ...
 
