@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+
+// Páginas
+import { HomeDashboard } from './modules/dashboard/pages/HomeDashboard';
+import { QuoteHistory } from './modules/quotes/pages/QuoteHistory';
+import { CreateQuote } from './modules/quotes/pages/CreateQuote';
+import { Button } from './components/ui/Button';
+
+// Tipos
+import type { Quote } from './types/quote';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentView, setCurrentView] = useState<'dashboard' | 'quotes_list' | 'quotes_create'>('dashboard');
+  
+  // ESTADO NUEVO: Aquí guardamos el presupuesto a editar (si hay uno)
+  const [quoteToEdit, setQuoteToEdit] = useState<Quote | undefined>(undefined);
+
+  // Función para iniciar la creación (limpia el editor)
+  const handleCreateNew = () => {
+    setQuoteToEdit(undefined); // Aseguramos que esté vacío
+    setCurrentView('quotes_create');
+  };
+
+  // Función para iniciar la edición (carga datos)
+  const handleEditQuote = (quote: Quote) => {
+    setQuoteToEdit(quote); // Guardamos el presupuesto seleccionado
+    setCurrentView('quotes_create'); // Vamos al formulario
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-gray-50">
+      
+      {/* NAVEGACIÓN */}
+      <nav className="bg-white shadow-sm border-b px-6 py-4 flex justify-between items-center no-print">
+        <div className="font-bold text-xl text-blue-800">Sistema URH</div>
+        <div className="flex gap-4">
+          <Button 
+            variant={currentView === 'dashboard' ? 'primary' : 'outline'} 
+            onClick={() => setCurrentView('dashboard')}
+          >
+            Clientes
+          </Button>
+          <Button 
+            variant={currentView.includes('quotes') ? 'primary' : 'outline'} 
+            onClick={() => setCurrentView('quotes_list')}
+          >
+            Presupuestos
+          </Button>
+        </div>
+      </nav>
+
+      {/* CONTENIDO */}
+      <main>
+        {currentView === 'dashboard' && <HomeDashboard />}
+        
+        {currentView === 'quotes_list' && (
+          <QuoteHistory 
+            onCreateNew={handleCreateNew} 
+            onEdit={handleEditQuote} // Pasamos la nueva función
+          />
+        )}
+        
+        {currentView === 'quotes_create' && (
+          <CreateQuote 
+            onBack={() => setCurrentView('quotes_list')} 
+            initialData={quoteToEdit} // Pasamos los datos a editar (si existen)
+          />
+        )}
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
